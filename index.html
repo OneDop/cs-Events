@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IEEE SOFTVERSE · You're Invited</title>
+  <meta name="description" content="Beyond the classroom, closer to the real world of software. Tue, Nov 24, 2026 · 1:00 PM – 3:00 PM · Allouzi Theatre, KASIT – University of Jordan.">
+  <meta name="theme-color" content="#0b0705">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph / link previews (WhatsApp, iMessage, Slack, LinkedIn).
+       Crawlers don't run JavaScript, so keep these in sync with EVENT_CONFIG by hand. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IEEE Computer Society – University of Jordan">
+  <meta property="og:title" content="IEEE SOFTVERSE — You're invited">
+  <meta property="og:description" content="Beyond the classroom, closer to the real world of software. Tue, Nov 24 · 1:00 PM – 3:00 PM · Allouzi Theatre, KASIT – University of Jordan.">
+  <meta property="og:locale" content="en_US">
+  <!-- Optional, recommended after deploy (absolute URLs only; 1200×630 JPG/PNG works best on WhatsApp):
+  <meta property="og:url" content="https://YOUR-SITE.netlify.app/">
+  <meta property="og:image" content="https://YOUR-SITE.netlify.app/og-image.jpg">
+  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IEEE SOFTVERSE — You're invited">
+  <meta name="twitter:description" content="Beyond the classroom, closer to the real world of software. Tue, Nov 24 · Allouzi Theatre, KASIT – University of Jordan.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0705'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f7a21b' stroke-width='6' stroke-linecap='round' stroke-dasharray='78 30'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f7a21b'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0705;
+      --ink: #f4ece3;
+      --ink-2: rgba(244, 236, 227, .74);
+      --ink-3: rgba(244, 236, 227, .5);
+      --ink-4: rgba(244, 236, 227, .3);
+      --amber: #f7a21b;
+      --amber-hi: #ffbe55;
+      --amber-ink: #1c0f04;
+      --line: rgba(255, 210, 170, .14);
+      --line-2: rgba(255, 210, 170, .24);
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --gutter: clamp(16px, 4vw, 48px);
+      --sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+    ::selection { background: rgba(247, 162, 27, .4); color: #fff; }
+    :focus-visible { outline: 2px solid var(--amber-hi); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Living background: a galaxy of 0s and 1s, after the poster ── */
+    #galaxy { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+    .grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .06; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+    main, footer { position: relative; z-index: 2; }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh; min-height: 100svh;
+      display: grid; grid-template-rows: auto 1fr auto;
+      padding: 20px var(--gutter) calc(24px + env(safe-area-inset-bottom));
+    }
+    .hero::before { /* keeps the title readable over the galaxy */
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: radial-gradient(60% 40% at 50% 42%, rgba(11, 7, 5, .55), transparent 70%);
+    }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; font-size: .78rem; line-height: 1.3; color: var(--ink-3); }
+    .topbar strong { display: block; color: var(--ink); font-weight: 600; }
+    .topbar .right { text-align: right; }
+
+    .hero-center { align-self: center; text-align: center; padding: 6vh 0 10vh; }
+    .kicker {
+      margin: 0; line-height: 1;
+      font-weight: 200; font-size: clamp(1.8rem, 7vw, 4rem);
+      letter-spacing: .62em; margin-right: -.62em;
+      animation: track 1.6s var(--ease) both .1s;
+    }
+    @keyframes track { from { letter-spacing: 1.4em; margin-right: -1.4em; opacity: 0; } }
+    .title {
+      margin: .12em 0 0; line-height: .9;
+      font-weight: 800; font-size: clamp(3rem, 14.2vw, 12.5rem);
+      letter-spacing: -.015em; text-transform: uppercase; white-space: nowrap;
+      color: var(--amber);
+      text-shadow: 0 .055em 0 rgba(110, 52, 4, .95), 0 .3em 1.2em rgba(0, 0, 0, .45);
+    }
+    .title span { display: inline-block; animation: letter 1.1s var(--ease) both; animation-delay: calc(var(--i) * 55ms + 250ms); }
+    @keyframes letter { from { opacity: 0; transform: translateY(.35em) rotate(4deg); filter: blur(8px); } }
+    .tagline {
+      margin: 22px auto 0; max-width: 32ch;
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(1.25rem, 3.4vw, 1.9rem); line-height: 1.25;
+      color: var(--ink-2);
+      animation: fadeUp 1s var(--ease) both .9s;
+    }
+    .meta {
+      margin: 20px 0 0; font-size: clamp(.72rem, 1.6vw, .82rem); font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--amber-hi); text-wrap: balance;
+      animation: fadeUp 1s var(--ease) both 1.05s;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
+
+    .hero-foot {
+      display: grid; gap: 20px; align-items: end;
+      padding-top: 20px; border-top: 1px solid var(--line);
+      animation: fadeUp 1s var(--ease) both 1.2s;
+    }
+    @media (min-width: 760px) { .hero-foot { grid-template-columns: 1fr auto; } }
+    .cd-label { margin: 0 0 8px; font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+    .cd { display: flex; gap: clamp(22px, 5vw, 48px); }
+    .cd .num { display: block; font-weight: 200; font-size: clamp(2.6rem, 9vw, 4.4rem); line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+    .cd .lbl { display: block; margin-top: 6px; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+    .cd-status strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; }
+    .cd-status span { display: block; margin-top: 4px; color: var(--ink-3); font-size: .92rem; }
+    body[data-state="live"] .cd-status strong { color: var(--amber-hi); }
+    body:not([data-state="upcoming"]) .cd-label { display: none; }
+
+    /* ── Marquee band ── */
+    .band { overflow: hidden; padding: clamp(28px, 5vw, 56px) 0; }
+    .marquee {
+      width: 106vw; margin-left: -3vw;
+      background: var(--amber); color: var(--amber-ink);
+      transform: rotate(-2deg);
+      box-shadow: 0 20px 60px -20px rgba(247, 140, 20, .45);
+    }
+    .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+    .marquee span {
+      padding: .12em .45em .08em 0;
+      font-weight: 800; font-size: clamp(2.4rem, 8vw, 6.4rem); line-height: 1.1;
+      text-transform: uppercase; letter-spacing: -.02em; white-space: nowrap;
+    }
+    .marquee span.o { color: transparent; -webkit-text-stroke: 1.5px var(--amber-ink); }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ── Sections ── */
+    .section { padding: clamp(64px, 11vw, 150px) 0; }
+    .section-num {
+      display: flex; align-items: baseline; gap: 14px;
+      margin: 0 0 clamp(28px, 5vw, 56px);
+      font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3);
+    }
+    .section-num b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.6rem; letter-spacing: 0; color: var(--amber); }
+
+    .rows { margin: 0; }
+    .row { display: grid; gap: 6px; padding: clamp(22px, 3.5vw, 34px) 0; border-top: 1px solid var(--line); }
+    .row:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 760px) { .row { grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; } }
+    .row dt { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); transition: color .3s; }
+    .row dd { margin: 0; min-width: 0; }
+    .row .big {
+      display: block; font-weight: 600; font-size: clamp(1.9rem, 5.6vw, 3.6rem); line-height: 1.08; letter-spacing: -.025em;
+      transition: transform .5s var(--ease), color .3s;
+    }
+    .row .small { display: block; margin-top: 10px; color: var(--ink-2); font-size: 1rem; }
+    .row .hint { margin-top: 4px; color: var(--ink-3); font-size: .9rem; }
+    @media (hover: hover) {
+      .row:hover dt { color: var(--amber); }
+      .row:hover .big { transform: translateX(10px); }
+    }
+    .links { display: block; margin-top: 12px; font-size: .95rem; color: var(--ink-4); }
+    .text-link {
+      padding: 0; border: 0; background: none;
+      font-size: inherit; font-weight: 600; color: var(--amber-hi);
+      text-decoration: underline; text-decoration-color: rgba(255, 190, 85, .35); text-underline-offset: 4px;
+      transition: text-decoration-color .2s;
+    }
+    .text-link:hover { text-decoration-color: currentColor; }
+
+    .about-grid { display: grid; gap: clamp(28px, 4vw, 48px); }
+    @media (min-width: 900px) { .about-grid { grid-template-columns: 7fr 5fr; align-items: end; } }
+    .lead { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.5rem, 7.6vw, 5.6rem); line-height: 1; letter-spacing: -.01em; }
+    .lead em { color: var(--amber); }
+    .about-body p { margin: 0 0 16px; color: var(--ink-2); font-size: clamp(1rem, 1.6vw, 1.12rem); }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body strong { color: var(--ink); font-weight: 600; }
+
+    .final { text-align: center; }
+    .closing { margin: 0 auto; max-width: 16ch; font-family: var(--serif); font-size: clamp(2.6rem, 8vw, 6rem); line-height: 1; letter-spacing: -.01em; }
+    .closing em { color: var(--amber); }
+    .final-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: clamp(32px, 5vw, 48px); }
+
+    /* ── Buttons & calendar menu ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      height: 54px; padding: 0 26px; border-radius: 10px;
+      font-weight: 700; font-size: 1rem; white-space: nowrap; text-decoration: none;
+      transition: background .2s, border-color .2s, transform .15s, box-shadow .3s;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { border: 0; color: var(--amber-ink); background: var(--amber); box-shadow: 0 10px 30px -12px rgba(247, 150, 20, .8); }
+    .btn-primary:hover { background: var(--amber-hi); }
+    .btn-ghost { border: 1px solid var(--line-2); background: rgba(11, 7, 5, .4); color: var(--ink); }
+    .btn-ghost:hover { border-color: rgba(255, 210, 170, .45); }
+    .chev { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease); }
+
+    .cal-wrap { position: relative; }
+    .cal-wrap .btn { width: 100%; }
+    @media (min-width: 760px) { .cal-wrap { min-width: 250px; } }
+    .cal-wrap.open .chev { transform: rotate(180deg); }
+    .cal-menu {
+      position: absolute; z-index: 10; left: 0; right: 0; bottom: calc(100% + 8px);
+      padding: 6px; border-radius: 12px; text-align: left;
+      background: #1a110c; border: 1px solid var(--line-2);
+      box-shadow: 0 20px 50px -16px rgba(0, 0, 0, .85);
+      opacity: 0; visibility: hidden; transform: translateY(4px);
+      transition: opacity .18s var(--ease), transform .22s var(--ease), visibility 0s linear .22s;
+    }
+    .cal-wrap.open .cal-menu { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+    .cal-item {
+      display: block; width: 100%; padding: 11px 12px;
+      border: 0; border-radius: 8px; background: transparent;
+      text-align: left; text-decoration: none; line-height: 1.3;
+    }
+    .cal-item:hover, .cal-item:focus-visible { background: rgba(255, 210, 170, .08); outline: none; }
+    .cal-item strong { display: block; font-size: .95rem; font-weight: 600; }
+    .cal-item small { display: block; font-size: .8rem; color: var(--ink-3); }
+    body[data-state="ended"] .cal-wrap { display: none; }
+
+    /* ── Footer & toast ── */
+    .foot { padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-4); }
+    .foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+    .foot strong { color: var(--ink-3); font-weight: 600; }
+    .foot em { font-family: var(--serif); font-size: 1rem; color: var(--ink-3); }
+
+    .toast {
+      position: fixed; z-index: 50; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom));
+      max-width: calc(100vw - 32px); padding: 11px 18px; border-radius: 10px;
+      font-size: .9rem; font-weight: 500;
+      color: var(--ink); background: #241812; border: 1px solid var(--line-2);
+      box-shadow: 0 14px 34px -12px rgba(0, 0, 0, .8);
+      opacity: 0; transform: translate(-50%, 10px); pointer-events: none;
+      transition: opacity .2s var(--ease), transform .25s var(--ease);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ── Scroll reveal (only when JS is running) ── */
+    .js .rv { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1.1s var(--ease); }
+    .js .rv.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
+      .js .rv { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body data-state="upcoming">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <canvas id="galaxy" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="topbar">
+        <div><strong>IEEE Computer Society</strong>University of Jordan</div>
+        <div class="right"><strong>KASIT</strong><span id="topDate">24.11.2026</span></div>
+      </div>
+
+      <div class="hero-center">
+        <p class="kicker" id="kicker">IEEE</p>
+        <h1 class="title" id="title">SOFTVERSE</h1>
+        <p class="tagline" id="tagline">Beyond the classroom, closer to the real world of software.</p>
+        <p class="meta" id="heroMeta">Tue 24 Nov · 1:00 PM – 3:00 PM · Allouzi Theatre, KASIT</p>
+      </div>
+
+      <div class="hero-foot">
+        <div>
+          <p class="cd-label">Starts in</p>
+          <div class="cd" id="cdGrid" role="timer" aria-label="Time until the event starts">
+            <div><span class="num" data-cd="d">--</span><span class="lbl" data-cd-l="d">Days</span></div>
+            <div><span class="num" data-cd="h">--</span><span class="lbl" data-cd-l="h">Hours</span></div>
+            <div><span class="num" data-cd="m">--</span><span class="lbl" data-cd-l="m">Minutes</span></div>
+          </div>
+          <p class="cd-status" id="cdStatus" role="status" hidden><strong id="cdStatusTitle"></strong><span id="cdStatusSub"></span></p>
+        </div>
+
+        <div class="cal-wrap" data-cal-wrap>
+          <button type="button" class="btn btn-primary" data-cal-btn aria-haspopup="menu" aria-expanded="false">
+            Add to calendar
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+          </button>
+          <div class="cal-menu" role="menu">
+            <button type="button" class="cal-item" role="menuitem" data-cal="ics" data-app="Apple Calendar"><strong>Apple Calendar</strong><small>iPhone, iPad and Mac</small></button>
+            <a class="cal-item" role="menuitem" href="#" target="_blank" rel="noopener" data-cal="google"><strong>Google Calendar</strong><small>Opens in a new tab</small></a>
+            <button type="button" class="cal-item" role="menuitem" data-cal="ics" data-app="Outlook"><strong>Outlook</strong><small>Downloads an .ics file</small></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="band" aria-hidden="true">
+      <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+    </div>
+
+    <!-- When & where -->
+    <section class="section" aria-labelledby="whenLabel">
+      <div class="wrap">
+        <h2 class="section-num" id="whenLabel"><b>01</b> When &amp; where</h2>
+        <dl class="rows">
+          <div class="row rv">
+            <dt>Date</dt>
+            <dd><span class="big" id="dateBig">Tuesday, 24 November</span><span class="small" id="yearLine">2026</span></dd>
+          </div>
+          <div class="row rv">
+            <dt>Time</dt>
+            <dd>
+              <span class="big" id="timeBig">1:00 PM – 3:00 PM</span>
+              <span class="small" id="tzLine">Amman time (GMT+3)</span>
+              <span class="small hint" id="localHint" hidden></span>
+            </dd>
+          </div>
+          <div class="row rv">
+            <dt>Venue</dt>
+            <dd>
+              <span class="big" id="venueBig">Allouzi Theatre</span>
+              <span class="small" id="addressLine">KASIT, University of Jordan · Amman</span>
+              <span class="links">
+                <button type="button" class="text-link" id="copyLocation">Copy address</button>
+                &nbsp;·&nbsp;
+                <a class="text-link" id="mapsLink" href="https://www.google.com/maps/search/?api=1&amp;query=Allouzi%20Theatre%2C%20KASIT%2C%20University%20of%20Jordan%2C%20Amman" target="_blank" rel="noopener">Directions</a>
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" aria-labelledby="aboutLabel">
+      <div class="wrap">
+        <h2 class="section-num" id="aboutLabel"><b>02</b> About</h2>
+        <div class="about-grid">
+          <p class="lead rv" id="lead">Think software is all about writing code? <em>Think again.</em></p>
+          <div class="about-body rv" id="descBody">
+            <p>Step beyond the classroom and discover what's really happening in the world of software.</p>
+            <p><strong>IEEE SOFTVERSE</strong> by IEEE Computer Society – University of Jordan is a student-focused experience designed to bring you closer to real-world software development, industry insights, and new opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="section final">
+      <div class="wrap">
+        <p class="closing rv" id="closing">Don't just learn about software — <em>experience it.</em></p>
+        <div class="final-actions rv">
+          <div class="cal-wrap" data-cal-wrap>
+            <button type="button" class="btn btn-primary" data-cal-btn aria-haspopup="menu" aria-expanded="false">
+              Add to calendar
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+            </button>
+            <div class="cal-menu" role="menu">
+              <button type="button" class="cal-item" role="menuitem" data-cal="ics" data-app="Apple Calendar"><strong>Apple Calendar</strong><small>iPhone, iPad and Mac</small></button>
+              <a class="cal-item" role="menuitem" href="#" target="_blank" rel="noopener" data-cal="google"><strong>Google Calendar</strong><small>Opens in a new tab</small></a>
+              <button type="button" class="cal-item" role="menuitem" data-cal="ics" data-app="Outlook"><strong>Outlook</strong><small>Downloads an .ics file</small></button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-ghost" id="copyLink">Copy link</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <span>Hosted by <strong id="footOrg">IEEE Computer Society – University of Jordan</strong> <span id="footPartner">in collaboration with KASIT</span></span>
+      <em id="footSignoff">Explore. Experience. Evolve.</em>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════════
+       EVENT_CONFIG — edit everything about the event here.
+       Times use ISO-8601 with the venue's UTC offset (Jordan = +03:00).
+       Remember to mirror title/description changes in the <meta> tags
+       in <head>, since link-preview crawlers don't run JavaScript.
+       ═══════════════════════════════════════════════════════════════ */
+    const EVENT_CONFIG = {
+      title: "IEEE SOFTVERSE",                 // used for calendar entries & page title
+      kicker: "IEEE",                          // thin, letter-spaced line above the title
+      name: "SOFTVERSE",                       // big display title
+      tagline: "Beyond the classroom, closer to the real world of software.",
+
+      start: "2026-11-24T13:00:00+03:00",
+      end:   "2026-11-24T15:00:00+03:00",
+      timeZone: "Asia/Amman",                  // IANA zone the times are displayed in
+      timeZoneName: "Amman time",
+
+      venue: "Allouzi Theatre",
+      address: "KASIT, University of Jordan",
+      city: "Amman, Jordan",
+      mapsUrl: "",                             // optional; leave empty to auto-generate a Google Maps search
+
+      organizer: "IEEE Computer Society – University of Jordan",
+      partnerShort: "KASIT",
+
+      // First item is the big serif lead. *word* = amber italic, **word** = bold.
+      description: [
+        "Think software is all about writing code? *Think again.*",
+        "Step beyond the classroom and discover what's really happening in the world of software.",
+        "**IEEE SOFTVERSE** by IEEE Computer Society – University of Jordan is a student-focused experience designed to bring you closer to real-world software development, industry insights, and new opportunities."
+      ],
+      closing: "Don't just learn about software — *experience it.*",
+      signoff: ["Explore.", "Experience.", "Evolve."],
+
+      url: "",                                 // canonical invite URL; empty = current page URL
+      uid: "ieee-softverse-2026@ieee-cs-uj",   // stable calendar UID (keep unchanged so re-imports update, not duplicate)
+      reminderMinutes: 60,                     // calendar alert before start; 0 to disable
+      icsFilename: "invite.ics"
+    };
+
+    (() => {
+      "use strict";
+      const C = EVENT_CONFIG;
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+      const START = new Date(C.start);
+      const END = new Date(C.end);
+      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const fullLocation = [C.venue, C.address, C.city].filter(Boolean).join(", ");
+      // Only real http(s) URLs count (not file:// or data: previews)
+      const pageUrl = () => C.url || (/^https?:$/.test(location.protocol) ? location.href.split(/[?#]/)[0] : "");
+      const plain = (s) => s.replace(/\*\*?([^*]+)\*\*?/g, "$1");
+      const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const rich = (s) => esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+      /* ── Date formatting ── */
+      const fmt = (d, opts, tz = C.timeZone) => new Intl.DateTimeFormat("en-US", { timeZone: tz, ...opts }).format(d);
+      const T = { hour: "numeric", minute: "2-digit" };
+      const tzOffset = (() => { try { return fmt(START, { timeZoneName: "shortOffset" }).split(" ").pop(); } catch { return ""; } })();
+
+      /* ── Fill the page from config ── */
+      function hydrate() {
+        document.title = `${C.title} · You're Invited`;
+        $("#kicker").textContent = C.kicker;
+        const title = $("#title");
+        title.setAttribute("aria-label", C.name);
+        title.innerHTML = [...C.name].map((ch, i) => `<span aria-hidden="true" style="--i:${i}">${esc(ch)}</span>`).join("");
+        $("#tagline").textContent = C.tagline;
+
+        const wd = fmt(START, { weekday: "long" }), day = fmt(START, { day: "numeric" }), mon = fmt(START, { month: "long" });
+        const timeRange = `${fmt(START, T)} – ${fmt(END, T)}`;
+        $("#topDate").textContent = [fmt(START, { day: "2-digit" }), fmt(START, { month: "2-digit" }), fmt(START, { year: "numeric" })].join(".");
+        $("#heroMeta").textContent = `${wd.slice(0, 3)} ${day} ${mon.slice(0, 3)} · ${timeRange} · ${C.venue}`;
+        $("#dateBig").textContent = `${wd}, ${day} ${mon}`;
+        $("#yearLine").textContent = fmt(START, { year: "numeric" });
+        $("#timeBig").textContent = timeRange;
+        $("#tzLine").textContent = [C.timeZoneName, tzOffset && `(${tzOffset})`].filter(Boolean).join(" ");
+
+        try { // viewer's local time, if different
+          const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          const dayDiffers = fmt(START, { day: "numeric" }, userTz) !== day;
+          if (userTz && (dayDiffers || fmt(START, T, userTz) !== fmt(START, T))) {
+            const d = dayDiffers ? `${fmt(START, { weekday: "short", month: "short", day: "numeric" }, userTz)}, ` : "";
+            $("#localHint").textContent = `${d}${fmt(START, T, userTz)} – ${fmt(END, T, userTz)} your time`;
+            $("#localHint").hidden = false;
+          }
+        } catch { /* skip */ }
+
+        $("#venueBig").textContent = C.venue;
+        $("#addressLine").textContent = [C.address, C.city && C.city.split(",")[0]].filter(Boolean).join(" · ");
+        $("#mapsLink").href = C.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullLocation)}`;
+
+        const [lead, ...rest] = C.description;
+        $("#lead").innerHTML = rich(lead || "");
+        $("#descBody").innerHTML = rest.map((p) => `<p>${rich(p)}</p>`).join("");
+        $("#closing").innerHTML = rich(C.closing || "");
+
+        const words = C.signoff || [];
+        const group = Array.from({ length: 3 }, () => words.map((w, i) => `<span class="${i % 2 ? "o" : ""}">${esc(w.replace(/\.$/, ""))}</span>`).join("")).join("");
+        $("#marquee").innerHTML = group + group; // doubled for a seamless loop
+        $("#footSignoff").textContent = words.join(" ");
+
+        $("#footOrg").textContent = C.organizer;
+        $("#footPartner").textContent = C.partnerShort ? `with ${C.partnerShort}` : "";
+        $$('[data-cal="google"]').forEach((a) => (a.href = googleUrl()));
+      }
+
+      /* ── Galaxy of binary digits (canvas) ── */
+      function galaxy() {
+        const cv = $("#galaxy");
+        const ctx = cv.getContext("2d");
+        if (!ctx) return;
+        let W = 0, H = 0, dpr = 1, R = 0, small = false;
+        const ptr = { x: 0, y: 0, tx: 0, ty: 0 };
+
+        // Pre-rendered glyph sprites: much faster than fillText per particle
+        const sprite = (ch, color) => {
+          const s = 64, c = document.createElement("canvas");
+          c.width = c.height = s;
+          const x = c.getContext("2d");
+          x.fillStyle = color;
+          x.font = `600 ${s * .78}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
+          x.textAlign = "center"; x.textBaseline = "middle";
+          x.fillText(ch, s / 2, s / 2 + 3);
+          return c;
+        };
+        const glyphs = { 0: [sprite("0", "#f7a21b"), sprite("0", "#ffd9a0")], 1: [sprite("1", "#f7a21b"), sprite("1", "#ffd9a0")] };
+
+        const parts = [];
+        const streaks = [];
+        function seed() {
+          parts.length = 0;
+          const n = small ? 520 : 1100;
+          for (let i = 0; i < n; i++) {
+            const r = 0.06 + 0.94 * Math.sqrt(Math.random());
+            const onArm = Math.random() < 0.72;
+            const arm = i % 3;
+            const theta = onArm
+              ? arm * (Math.PI * 2 / 3) - 2.4 * Math.log(r) + (Math.random() - 0.5) * 0.55
+              : Math.random() * Math.PI * 2;
+            parts.push({ r, theta, ch: Math.random() < 0.5 ? 0 : 1, hi: Math.random() < 0.14 ? 1 : 0, b: 0.55 + Math.random() * 0.45 });
+          }
+          streaks.length = 0;
+          [[0.2, 1.3, 1.6], [0.34, 0.9, 1.1], [0.52, 1.6, 0.8], [0.7, 0.8, 0.6]].forEach(([r, len, speed], k) =>
+            streaks.push({ r, len, speed, off: k * 1.9 }));
+        }
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = innerWidth; H = innerHeight;
+          const wasSmall = small;
+          small = W < 700;
+          cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+          R = Math.max(W * 0.62, H * 0.82);
+          if (!parts.length || wasSmall !== small) seed();
+        }
+
+        const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+        function draw(now) {
+          ptr.x += (ptr.tx - ptr.x) * 0.04;
+          ptr.y += (ptr.ty - ptr.y) * 0.04;
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, cv.width, cv.height);
+
+          const rot = now * 0.00004;
+          const cx = W * 0.5 + ptr.x * W * 0.025;
+          const cy = H * 0.66 + ptr.y * H * 0.02;
+          const tilt = 0.34 + ptr.y * 0.03;
+          const tA = -0.22 + ptr.x * 0.04;
+          const ca = Math.cos(tA), sa = Math.sin(tA);
+          const scale = small ? 0.85 : 1;
+
+          ctx.globalCompositeOperation = "lighter";
+
+          // Light streaks orbiting the core
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.lineCap = "round";
+          for (const s of streaks) {
+            const a0 = s.off + rot * s.speed * 3;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, s.r * R, s.r * R * tilt, tA, a0, a0 + s.len);
+            ctx.strokeStyle = "rgba(255, 190, 95, .35)";
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+
+          // Digits
+          for (const p of parts) {
+            const a = p.theta + rot * (1 + 0.6 * (1 - p.r));
+            const cosA = Math.cos(a), sinA = Math.sin(a);
+            const ex = cosA * p.r * R, ey = sinA * p.r * R * tilt;
+            const X = cx + ex * ca - ey * sa;
+            const Y = cy + ex * sa + ey * ca;
+            if (X < -30 || X > W + 30 || Y < -30 || Y > H + 30) continue;
+            const depth = (sinA + 1) / 2; // 1 = nearest the viewer
+            const alpha = smooth(0.05, 0.22, p.r) * (1 - smooth(0.72, 1, p.r)) * (0.16 + 0.84 * depth) * p.b;
+            if (alpha < 0.02) continue;
+            const tx = -sinA, ty = cosA * tilt; // orbit tangent → glyphs run along the spiral
+            const ang = Math.atan2(tx * sa + ty * ca, tx * ca - ty * sa);
+            const size = (7 + 13 * p.r) * (0.65 + 0.6 * depth) * scale;
+            const c = Math.cos(ang) * dpr, s = Math.sin(ang) * dpr;
+            ctx.setTransform(c, s, -s, c, X * dpr, Y * dpr);
+            ctx.globalAlpha = alpha;
+            ctx.drawImage(glyphs[p.ch][p.hi], -size / 2, -size / 2, size, size);
+          }
+          ctx.globalAlpha = 1;
+          ctx.globalCompositeOperation = "source-over";
+
+          // Occasional bit flips
+          for (let i = 0; i < 3; i++) { const p = parts[(Math.random() * parts.length) | 0]; p.ch ^= 1; }
+
+          if (!reduceMotion) requestAnimationFrame(draw);
+        }
+
+        resize();
+        addEventListener("resize", resize);
+        addEventListener("pointermove", (e) => {
+          ptr.tx = (e.clientX / W) * 2 - 1;
+          ptr.ty = (e.clientY / H) * 2 - 1;
+        }, { passive: true });
+        const fadeOnScroll = () => { cv.style.opacity = String(1 - 0.68 * Math.min(1, scrollY / (H * 0.9))); };
+        addEventListener("scroll", fadeOnScroll, { passive: true });
+        fadeOnScroll();
+        requestAnimationFrame(draw);
+      }
+
+      /* ── Scroll reveal ── */
+      function reveal() {
+        const els = $$(".rv");
+        if (!("IntersectionObserver" in window)) { els.forEach((el) => el.classList.add("in")); return; }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+        }, { rootMargin: "0px 0px -10% 0px" });
+        els.forEach((el) => io.observe(el));
+      }
+
+      /* ── Toast & clipboard ── */
+      const toastEl = $("#toast");
+      let toastTimer;
+      function toast(message) {
+        toastEl.textContent = message;
+        toastEl.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2400);
+      }
+      async function copyText(text) {
+        try { await navigator.clipboard.writeText(text); return true; }
+        catch {
+          const ta = document.createElement("textarea");
+          ta.value = text; ta.setAttribute("readonly", "");
+          Object.assign(ta.style, { position: "fixed", top: "0", left: "0", opacity: "0" });
+          document.body.appendChild(ta); ta.select();
+          let ok = false;
+          try { ok = document.execCommand("copy"); } catch { ok = false; }
+          ta.remove();
+          return ok;
+        }
+      }
+      $("#copyLink").addEventListener("click", async () => toast((await copyText(pageUrl() || location.href)) ? "Link copied" : "Couldn't copy the link"));
+      $("#copyLocation").addEventListener("click", async () => toast((await copyText(fullLocation)) ? "Address copied" : "Couldn't copy the address"));
+
+      /* ── Calendar: .ics (RFC 5545) ── */
+      const icsDate = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); // 20261124T080000Z
+      const icsEscape = (s) => String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+      function fold(line) { // 75-octet UTF-8 line folding, never splitting a character
+        const enc = new TextEncoder();
+        const out = [];
+        let cur = "", bytes = 0;
+        for (const ch of line) {
+          const b = enc.encode(ch).length;
+          if (bytes + b > 75) { out.push(cur); cur = " " + ch; bytes = 1 + b; }
+          else { cur += ch; bytes += b; }
+        }
+        out.push(cur);
+        return out.join("\r\n");
+      }
+      function calendarDescription() {
+        const parts = [...C.description.map(plain), plain(C.closing || ""), (C.signoff || []).join(" ")];
+        if (pageUrl()) parts.push(`Invite: ${pageUrl()}`);
+        return parts.filter(Boolean).join("\n\n");
+      }
+      function buildICS() {
+        const lines = [
+          "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//IEEE Computer Society UJ//Event Invite//EN",
+          "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT",
+          `UID:${C.uid}`,
+          `DTSTAMP:${icsDate(new Date())}`,
+          `DTSTART:${icsDate(START)}`,
+          `DTEND:${icsDate(END)}`,
+          `SUMMARY:${icsEscape(C.title)}`,
+          `DESCRIPTION:${icsEscape(calendarDescription())}`,
+          `LOCATION:${icsEscape(fullLocation)}`,
+          ...(pageUrl() ? [`URL:${pageUrl()}`] : []),
+          "STATUS:CONFIRMED", "TRANSP:OPAQUE"
+        ];
+        if (C.reminderMinutes > 0) {
+          lines.push("BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${icsEscape(C.title)}`, `TRIGGER:-PT${Math.round(C.reminderMinutes)}M`, "END:VALARM");
+        }
+        lines.push("END:VEVENT", "END:VCALENDAR");
+        return lines.map(fold).join("\r\n") + "\r\n";
+      }
+      function downloadICS(app) {
+        const ics = buildICS();
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        if (isIOS) { // iOS Safari hands a text/calendar data URI straight to the native "Add to Calendar" sheet
+          location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+          return;
+        }
+        const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+        const a = document.createElement("a");
+        a.href = url; a.download = C.icsFilename || "invite.ics";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        toast(`Downloaded — open it to add to ${app || "your calendar"}`);
+      }
+
+      /* ── Calendar: Google ── */
+      function googleUrl() {
+        const q = { action: "TEMPLATE", text: C.title, dates: `${icsDate(START)}/${icsDate(END)}`, details: calendarDescription(), location: fullLocation, ctz: C.timeZone };
+        return "https://calendar.google.com/calendar/render?" + Object.entries(q).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join("&");
+      }
+
+      /* ── Calendar menus (hero + closing) ── */
+      const wraps = $$("[data-cal-wrap]");
+      function closeAll(except, returnFocus) {
+        wraps.forEach((w) => {
+          if (w === except || !w.classList.contains("open")) return;
+          w.classList.remove("open");
+          const b = w.querySelector("[data-cal-btn]");
+          b.setAttribute("aria-expanded", "false");
+          if (returnFocus) b.focus();
+        });
+      }
+      wraps.forEach((wrap) => {
+        const btn = wrap.querySelector("[data-cal-btn]");
+        const menu = wrap.querySelector(".cal-menu");
+        const items = () => $$('[role="menuitem"]', menu);
+        const open = (focusIndex) => {
+          closeAll(wrap);
+          wrap.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+          if (focusIndex != null) requestAnimationFrame(() => items().at(focusIndex)?.focus());
+        };
+        btn.addEventListener("click", () => (wrap.classList.contains("open") ? closeAll(null) : open()));
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowUp") { e.preventDefault(); open(-1); }
+          if (e.key === "ArrowDown") { e.preventDefault(); open(0); }
+        });
+        menu.addEventListener("keydown", (e) => {
+          const list = items(), i = list.indexOf(document.activeElement);
+          if (e.key === "ArrowDown") { e.preventDefault(); list[(i + 1) % list.length].focus(); }
+          else if (e.key === "ArrowUp") { e.preventDefault(); list[(i - 1 + list.length) % list.length].focus(); }
+          else if (e.key === "Escape") { e.preventDefault(); closeAll(null, true); }
+          else if (e.key === "Tab") closeAll(null);
+        });
+        menu.addEventListener("click", (e) => {
+          const item = e.target.closest("[data-cal]");
+          if (!item) return;
+          if (item.dataset.cal === "ics") downloadICS(item.dataset.app);
+          closeAll(null);
+        });
+      });
+      document.addEventListener("click", (e) => { if (!e.target.closest("[data-cal-wrap]")) closeAll(null); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(null, true); });
+
+      /* ── Countdown ── */
+      const cdGrid = $("#cdGrid"), cdStatus = $("#cdStatus");
+      const num = (k) => $(`[data-cd="${k}"]`), lbl = (k) => $(`[data-cd-l="${k}"]`);
+      let currentState = null;
+      function setUnit(k, v, one, many) {
+        num(k).textContent = String(v).padStart(2, "0");
+        lbl(k).textContent = v === 1 ? one : many;
+      }
+      function applyState(state) {
+        currentState = state;
+        document.body.dataset.state = state;
+        cdGrid.hidden = state !== "upcoming";
+        cdStatus.hidden = state === "upcoming";
+        if (state === "live") {
+          $("#cdStatusTitle").textContent = "Happening now";
+          $("#cdStatusSub").textContent = `Until ${fmt(END, T)} at ${C.venue}`;
+        } else if (state === "ended") {
+          $("#cdStatusTitle").textContent = "This event has ended";
+          $("#cdStatusSub").textContent = "Thanks to everyone who joined us — see you at the next one.";
+          closeAll(null);
+        }
+      }
+      function tick() {
+        const now = Date.now();
+        const state = now < START ? "upcoming" : now < END ? "live" : "ended";
+        if (state !== currentState) applyState(state);
+        if (state === "upcoming") {
+          const totalMin = Math.ceil((START - now) / 60000);
+          setUnit("d", Math.floor(totalMin / 1440), "Day", "Days");
+          setUnit("h", Math.floor((totalMin % 1440) / 60), "Hour", "Hours");
+          setUnit("m", totalMin % 60, "Minute", "Minutes");
+        }
+      }
+
+      /* ── Boot ── */
+      hydrate();
+      galaxy();
+      reveal();
+      tick();
+      setInterval(tick, 1000);
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
+    })();
+  </script>
+</body>
+</html>
