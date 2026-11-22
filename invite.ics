@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//IEEE Computer Society UJ//Event Invite//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ieee-softverse-2026@ieee-cs-uj
+DTSTAMP:20261122T190710Z
+DTSTART:20261124T100000Z
+DTEND:20261124T120000Z
+SUMMARY:IEEE SOFTVERSE
+DESCRIPTION:Think software is all about writing code? Think again.\n\nStep 
+ beyond the classroom and discover what's really happening in the world of 
+ software.\n\nIEEE SOFTVERSE by IEEE Computer Society – University of Jor
+ dan is a student-focused experience designed to bring you closer to real-w
+ orld software development\, industry insights\, and new opportunities.\n\n
+ Don't just learn about software — experience it.\n\nExplore. Experience.
+  Evolve.
+LOCATION:Allouzi Theatre\, KASIT\, University of Jordan\, Amman\, Jordan
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:IEEE SOFTVERSE
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

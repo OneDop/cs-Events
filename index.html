@@ -433,7 +433,7 @@
       url: "",                                 // canonical invite URL; empty = current page URL
       uid: "ieee-softverse-2026@ieee-cs-uj",   // stable calendar UID (keep unchanged so re-imports update, not duplicate)
       reminderMinutes: 60,                     // calendar alert before start; 0 to disable
-      icsFilename: "invite.ics"
+      icsFilename: "invite.ics"                // iPhone/iPad open the static invite.ics file next to this page — update it if you change the date, time or venue
     };
 
     (() => {
@@ -701,8 +701,11 @@
       function downloadICS(app) {
         const ics = buildICS();
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-        if (isIOS) { // iOS Safari hands a text/calendar data URI straight to the native "Add to Calendar" sheet
-          location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+        if (isIOS && /^https?:$/.test(location.protocol)) {
+          // iOS blocks data:/blob: calendar downloads, but opens a real .ics served as
+          // text/calendar straight into the native "Add to Calendar" sheet.
+          // invite.ics is a static copy — regenerate it if you change EVENT_CONFIG.
+          location.href = new URL(C.icsFilename || "invite.ics", location.href).href;
           return;
         }
         const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
