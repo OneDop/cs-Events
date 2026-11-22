@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:ieee-softverse-2026@ieee-cs-uj
-DTSTAMP:20261122T190710Z
+DTSTAMP:20261122T192641Z
 DTSTART:20261124T100000Z
 DTEND:20261124T120000Z
 SUMMARY:IEEE SOFTVERSE
@@ -14,8 +14,12 @@ DESCRIPTION:Think software is all about writing code? Think again.\n\nStep
  software.\n\nIEEE SOFTVERSE by IEEE Computer Society – University of Jor
  dan is a student-focused experience designed to bring you closer to real-w
  orld software development\, industry insights\, and new opportunities.\n\n
- Don't just learn about software — experience it.\n\nExplore. Experience.
-  Evolve.
+ AGENDA\n11:00 AM – 1:00 PM  Coffee\, Booth Exploration & Networking\n1:0
+ 0 – 1:15 PM  Opening & Welcome\n1:15 – 1:55 PM  Talk 1 · Dr. Mohammed
+  Abu-Hadhoud\n1:55 – 2:10 PM  Kahoot Activity\n2:10 – 2:50 PM  Talk 2 
+ · Mohammad Noor Abu Khlaif\n2:50 – 3:00 PM  Closing\n3:00 – 3:35 PM  
+ Team Appreciation & Photograph\n\nDon't just learn about software — expe
+ rience it.\n\nExplore. Experience. Evolve.
 LOCATION:Allouzi Theatre\, KASIT\, University of Jordan\, Amman\, Jordan
 STATUS:CONFIRMED
 TRANSP:OPAQUE

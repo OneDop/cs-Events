@@ -189,6 +189,27 @@
     }
     .text-link:hover { text-decoration-color: currentColor; }
 
+    .agenda { margin: 0; padding: 0; list-style: none; }
+    .slot {
+      position: relative; display: grid; gap: 4px;
+      padding: clamp(18px, 2.8vw, 26px) 0; border-top: 1px solid var(--line);
+      transition: opacity .4s;
+    }
+    .slot:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 760px) { .slot { grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; } }
+    .slot-time { font-size: .95rem; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; transition: color .3s; }
+    .slot-body { display: block; min-width: 0; transition: transform .5s var(--ease); }
+    .slot-kicker { display: block; margin-bottom: 2px; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+    .slot-title { display: block; font-weight: 600; font-size: clamp(1.3rem, 3.4vw, 2rem); line-height: 1.2; letter-spacing: -.02em; }
+    .slot.talk .slot-title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 4.6vw, 2.8rem); letter-spacing: -.005em; line-height: 1.1; }
+    @media (hover: hover) {
+      .slot:hover .slot-time { color: var(--amber); }
+      .slot:hover .slot-body { transform: translateX(10px); }
+    }
+    .slot.past { opacity: .4; }
+    .slot.now .slot-time { color: var(--amber-hi); }
+    .slot.now .slot-time::after { content: "Now"; margin-left: 10px; font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-ink); background: var(--amber); padding: 2px 7px; border-radius: 4px; vertical-align: 2px; }
+
     .about-grid { display: grid; gap: clamp(28px, 4vw, 48px); }
     @media (min-width: 900px) { .about-grid { grid-template-columns: 7fr 5fr; align-items: end; } }
     .lead { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.5rem, 7.6vw, 5.6rem); line-height: 1; letter-spacing: -.01em; }
@@ -350,10 +371,26 @@
       </div>
     </section>
 
+    <!-- Agenda -->
+    <section class="section" aria-labelledby="agendaLabel">
+      <div class="wrap">
+        <h2 class="section-num" id="agendaLabel"><b>02</b> Agenda</h2>
+        <ol class="agenda" id="agenda">
+          <li class="slot rv"><span class="slot-time">11:00 AM – 1:00 PM</span><span class="slot-body"><span class="slot-title">Coffee, Booth Exploration &amp; Networking</span></span></li>
+          <li class="slot rv"><span class="slot-time">1:00 – 1:15 PM</span><span class="slot-body"><span class="slot-title">Opening &amp; Welcome</span></span></li>
+          <li class="slot rv"><span class="slot-time">1:15 – 1:55 PM</span><span class="slot-body"><span class="slot-kicker">Talk 1</span><span class="slot-title">Dr. Mohammed Abu-Hadhoud</span></span></li>
+          <li class="slot rv"><span class="slot-time">1:55 – 2:10 PM</span><span class="slot-body"><span class="slot-title">Kahoot Activity</span></span></li>
+          <li class="slot rv"><span class="slot-time">2:10 – 2:50 PM</span><span class="slot-body"><span class="slot-kicker">Talk 2</span><span class="slot-title">Mohammad Noor Abu Khlaif</span></span></li>
+          <li class="slot rv"><span class="slot-time">2:50 – 3:00 PM</span><span class="slot-body"><span class="slot-title">Closing</span></span></li>
+          <li class="slot rv"><span class="slot-time">3:00 – 3:35 PM</span><span class="slot-body"><span class="slot-title">Team Appreciation &amp; Photograph</span></span></li>
+        </ol>
+      </div>
+    </section>
+
     <!-- About -->
     <section class="section" aria-labelledby="aboutLabel">
       <div class="wrap">
-        <h2 class="section-num" id="aboutLabel"><b>02</b> About</h2>
+        <h2 class="section-num" id="aboutLabel"><b>03</b> About</h2>
         <div class="about-grid">
           <p class="lead rv" id="lead">Think software is all about writing code? <em>Think again.</em></p>
           <div class="about-body rv" id="descBody">
@@ -428,6 +465,17 @@
         "**IEEE SOFTVERSE** by IEEE Computer Society – University of Jordan is a student-focused experience designed to bring you closer to real-world software development, industry insights, and new opportunities."
       ],
       closing: "Don't just learn about software — *experience it.*",
+
+      // Agenda: 24-hour times on the event day (same date & offset as `start`). `speaker` is optional.
+      agenda: [
+        { from: "11:00", to: "13:00", title: "Coffee, Booth Exploration & Networking" },
+        { from: "13:00", to: "13:15", title: "Opening & Welcome" },
+        { from: "13:15", to: "13:55", title: "Talk 1", speaker: "Dr. Mohammed Abu-Hadhoud" },
+        { from: "13:55", to: "14:10", title: "Kahoot Activity" },
+        { from: "14:10", to: "14:50", title: "Talk 2", speaker: "Mohammad Noor Abu Khlaif" },
+        { from: "14:50", to: "15:00", title: "Closing" },
+        { from: "15:00", to: "15:35", title: "Team Appreciation & Photograph" }
+      ],
       signoff: ["Explore.", "Experience.", "Evolve."],
 
       url: "",                                 // canonical invite URL; empty = current page URL
@@ -455,6 +503,23 @@
       const fmt = (d, opts, tz = C.timeZone) => new Intl.DateTimeFormat("en-US", { timeZone: tz, ...opts }).format(d);
       const T = { hour: "numeric", minute: "2-digit" };
       const tzOffset = (() => { try { return fmt(START, { timeZoneName: "shortOffset" }).split(" ").pop(); } catch { return ""; } })();
+
+      /* ── Agenda slots → real Dates on the event day ── */
+      const dayPrefix = C.start.slice(0, 10);            // "2026-11-24"
+      const offset = C.start.slice(19) || "Z";           // "+03:00"
+      const slots = (C.agenda || []).map((s) => ({
+        ...s,
+        startAt: new Date(`${dayPrefix}T${s.from}:00${offset}`),
+        endAt: new Date(`${dayPrefix}T${s.to}:00${offset}`)
+      }));
+      function slotTime(s) {
+        const a = fmt(s.startAt, T), b = fmt(s.endAt, T);
+        const pa = a.slice(-2), pb = b.slice(-2);
+        return pa === pb ? `${a.slice(0, -3)} – ${b}` : `${a} – ${b}`; // "1:00 – 1:15 PM"
+      }
+      function agendaLines() {
+        return slots.map((s) => `${slotTime(s)}  ${s.title}${s.speaker ? ` · ${s.speaker}` : ""}`).join("\n");
+      }
 
       /* ── Fill the page from config ── */
       function hydrate() {
@@ -492,6 +557,16 @@
         $("#lead").innerHTML = rich(lead || "");
         $("#descBody").innerHTML = rest.map((p) => `<p>${rich(p)}</p>`).join("");
         $("#closing").innerHTML = rich(C.closing || "");
+
+        // Agenda
+        const list = $("#agenda");
+        list.innerHTML = slots.map((s) => {
+          const body = s.speaker
+            ? `<span class="slot-kicker">${esc(s.title)}</span><span class="slot-title">${esc(s.speaker)}</span>`
+            : `<span class="slot-title">${esc(s.title)}</span>`;
+          return `<li class="slot rv${s.speaker ? " talk" : ""}"><span class="slot-time">${esc(slotTime(s))}</span><span class="slot-body">${body}</span></li>`;
+        }).join("");
+        list.closest("section").hidden = !slots.length;
 
         const words = C.signoff || [];
         const group = Array.from({ length: 3 }, () => words.map((w, i) => `<span class="${i % 2 ? "o" : ""}">${esc(w.replace(/\.$/, ""))}</span>`).join("")).join("");
@@ -674,7 +749,7 @@
         return out.join("\r\n");
       }
       function calendarDescription() {
-        const parts = [...C.description.map(plain), plain(C.closing || ""), (C.signoff || []).join(" ")];
+        const parts = [...C.description.map(plain), slots.length ? `AGENDA\n${agendaLines()}` : "", plain(C.closing || ""), (C.signoff || []).join(" ")];
         if (pageUrl()) parts.push(`Invite: ${pageUrl()}`);
         return parts.filter(Boolean).join("\n\n");
       }
@@ -791,6 +866,14 @@
         const now = Date.now();
         const state = now < START ? "upcoming" : now < END ? "live" : "ended";
         if (state !== currentState) applyState(state);
+        // Highlight the current agenda slot on the day, dim finished ones
+        const lis = $$("#agenda .slot");
+        const onTheDay = fmt(new Date(now), { year: "numeric", month: "2-digit", day: "2-digit" }) === fmt(START, { year: "numeric", month: "2-digit", day: "2-digit" });
+        slots.forEach((s, i) => {
+          if (!lis[i]) return;
+          lis[i].classList.toggle("now", onTheDay && now >= s.startAt && now < s.endAt);
+          lis[i].classList.toggle("past", onTheDay && now >= s.endAt);
+        });
         if (state === "upcoming") {
           const totalMin = Math.ceil((START - now) / 60000);
           setUnit("d", Math.floor(totalMin / 1440), "Day", "Days");
